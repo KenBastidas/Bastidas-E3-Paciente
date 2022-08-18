@@ -1,0 +1,59 @@
+<!--Container y margin top de 1 pixel--->
+<div class="container mt-1">
+    <!--Clase Fila--->
+    <div class="row">
+        <!--Columnas extensas--->
+        <div class="col-lg-12 offset-lg-0">
+            <!--Card es un contener de contenido en formato flexible--->
+            <div class="card">
+                <!--1--->
+                <div class="card-body text-center">
+                    <!--1--->
+                    <span class="titulo">INFORME DE PACIENTES</span>
+                    <!--1--->
+                    <button class="btn btn-success float-end" routerLink="/agregar-paciente">NUEVO</button>
+                    <!--1--->
+                    <div class="search-ciudad btn-lg float-start">
+                      <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search by name,porcentajedeazucar, porcentajedegrasamayor, porcentajedeoxigeno or riesgo">
+                    </div>
+                    <td>
+                    <table border="4" *ngIf="listPacientes.length>0" class="table table-striped mt-3" >
+                        <!--1--->
+                        <thead>
+                          <tr>
+                            <!---sasdasdasd-->
+                            <th scope="col">name</th>
+                            <th scope="col">porcentajedeazucar</th>
+                            <th scope="col">porcentajedegrasamayor</th>
+                            <th scope="col">porcentajedeoxigeno</th>
+                            <th scope="col">riesgo</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <!--1--->
+                        <tbody>
+                          <!--1--->
+                          <tr *ngFor="let paciente of listPacientes | filter:searchText">
+                            <!--1--->
+                            <td>{{paciente.name}}</td>
+                            <td>{{paciente.porcentajedeazucar}}</td>
+                            <td>{{paciente.porcentajedegrasamayor}}</td>
+                            <td>{{paciente.porcentajedeoxigeno}}</td>
+                            <td>{{paciente.riesgo}}</td>
+                            <!--1--->
+                            <td>
+                                <!--Icono de editar--->
+                                <i [routerLink]="['/editar-paciente',paciente._id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                                <!--Icono de eliminar--->
+                                <i (click)="eliminarPacientes(paciente._id)" class="fa-solid fa-trash text-danger"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!--1--->
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="listPacientes.length == 0">No hay pacientes para mostar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
